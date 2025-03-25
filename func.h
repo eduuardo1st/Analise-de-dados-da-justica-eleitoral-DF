@@ -14,6 +14,10 @@ typedef struct processo_t {
 
 processo_t *LerArquivo(const char *nomeArquivo);
 
+void QuickSort(int *V, int inf, int sup);
+int Particao(int *V, int inf, int sup);
+void swap(int *a, int*b);
+
 
 
 #endif

@@ -31,3 +31,36 @@ processo_t *LerArquivo(const char *nomeArquivo){
     fclose(arquivo);
     return processos;
 }
+
+void QuickSort(int *V, int inf, int sup){
+	if(inf < sup){
+		int P = Particao(V, inf, sup);
+		QuickSort(V, inf, P - 1);
+		QuickSort(V, P, sup);
+	}
+	
+}
+
+int Particao(int *V, int inf, int sup){
+	int Pivo = V[(inf + sup) / 2];
+	int i = inf;
+	int j = sup;
+	
+	while(i <= j) {
+		while(V[i] < Pivo) i++;
+		while(V[j] > Pivo) j--;
+		if (i <= j){
+			swap(&V[i], &V[j]);
+			i++;
+			j--;
+		}
+	}
+	return i;
+}
+
+void swap(int *a, int *b){
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+	
+}

@@ -9,6 +9,9 @@ int main(){
          processos[0].id, processos[0].numero, processos[0].data_ajuizamento,
           processos[0].id_classe, processos[0].id_assunto, processos[0].ano_aleicao);
 
+    printf("teste2");
+
+
 
     return 0;
 }
