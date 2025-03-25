@@ -5,7 +5,7 @@
 
 typedef struct processo_t {
     long id;
-    long long int numero;
+    char numero[25];
     char data_ajuizamento[40];
     int id_classe;
     int id_assunto;
