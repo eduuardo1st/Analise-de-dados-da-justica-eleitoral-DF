@@ -3,29 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-void limparChavesEAspas(char *str) {
-    if (str == NULL) return;
-
-    char *inicio = strchr(str, '{');
-    char *fim = strrchr(str, '}');
-
-    if (inicio && fim && fim > inicio) {
-        memmove(str, inicio + 1, fim - inicio - 1);
-        str[fim - inicio - 1] = '\0';
-    }
-
-    // Remover aspas duplas se existirem
-    if (str[0] == '"') {
-        memmove(str, str + 1, strlen(str));
-        char *fimAspas = strrchr(str, '"');
-        if (fimAspas) *fimAspas = '\0';
-    }
-}
-
-#include "func.h"
-#include <stdio.h>
-#include <stdlib.h>
-
 processo_t *LerArquivo(const char *nomeArquivo){
     int i = 0;
     FILE *arquivo = fopen(nomeArquivo, "r");
