@@ -4,12 +4,12 @@
 #define NumProcesso 18391
 
 typedef struct processo_t {
-    long id;
+    char id[20];
     char numero[25];
     char data_ajuizamento[40];
-    int id_classe;
-    int id_assunto;
-    int ano_aleicao;
+    char id_classe[20];
+    char id_assunto[20];
+    char ano_aleicao[5];
 }processo_t;
 
 processo_t *LerArquivo(const char *nomeArquivo);

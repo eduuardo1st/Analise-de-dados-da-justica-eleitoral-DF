@@ -1,36 +1,64 @@
 #include "func.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+void limparChavesEAspas(char *str) {
+    if (str == NULL) return;
+
+    char *inicio = strchr(str, '{');
+    char *fim = strrchr(str, '}');
+
+    if (inicio && fim && fim > inicio) {
+        memmove(str, inicio + 1, fim - inicio - 1);
+        str[fim - inicio - 1] = '\0';
+    }
+
+    // Remover aspas duplas se existirem
+    if (str[0] == '"') {
+        memmove(str, str + 1, strlen(str));
+        char *fimAspas = strrchr(str, '"');
+        if (fimAspas) *fimAspas = '\0';
+    }
+}
+
+#include "func.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 processo_t *LerArquivo(const char *nomeArquivo){
-    
-    FILE *arquivo;
     int i = 0;
-    arquivo = fopen(nomeArquivo, "r");
-    if(arquivo == NULL){
-        printf("ERRO! falha ao abrir o arquivo.\n");
-        exit(1);
+    FILE *arquivo = fopen(nomeArquivo, "r");
+    if (arquivo == NULL) {
+        printf("ERRO! Falha ao abrir o arquivo.\n");
+        return NULL;
     }
 
     processo_t *processos = (processo_t *)malloc(NumProcesso * sizeof(processo_t));
     if (processos == NULL) {
         printf("Nao foi possivel alocar memoria para a tabela!\n");
-        exit(1);
+        fclose(arquivo);
+        return NULL;
     }
 
-    fscanf(arquivo, "%s");//pula primeira linha do arquivo .csv
+    // Pular primeira linha
+    fscanf(arquivo, "%*[^\n]\n");
 
-    while(fscanf(arquivo, "%ld,\"%[^\"]\",%[^,],{%d},{%d},%d",
-        &processos[i].id, 
+    while(fscanf(arquivo, " %[^;];%[^;];%[^;];%[^;];%[^;];%[^\n]",
+        processos[i].id, 
         processos[i].numero, 
         processos[i].data_ajuizamento,
-        &processos[i].id_classe, 
-        &processos[i].id_assunto, 
-        &processos[i].ano_aleicao) == 6)i++;
+        processos[i].id_classe, 
+        processos[i].id_assunto, 
+        processos[i].ano_aleicao) == 6)i++;
 
+
+    
     fclose(arquivo);
     return processos;
 }
+
+
 
 void QuickSort(int *V, int inf, int sup){
 	if(inf < sup){
