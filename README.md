@@ -1,19 +1,19 @@
-# TP01 - Análise de Dados da Justiça Eleitoral (DF)
+# AnÃ¡lise de Dados da JustiÃ§a Eleitoral (DF)
 
-Projeto desenvolvido como parte da disciplina de Programação Estruturada (2024), com foco na manipulação de dados estruturados em linguagem C, utilizando vetores de structs e TADs.
+Projeto desenvolvido como parte da disciplina de ProgramaÃ§Ã£o Estruturada (2024), com foco na manipulaÃ§Ã£o de dados estruturados em linguagem C, utilizando vetores de structs e TADs.
 
 ---
 
 ## Objetivo
 
-Este projeto tem como objetivo a leitura, organização e análise de dados relacionados a processos da Justiça Eleitoral do Distrito Federal, presentes em um arquivo `.csv`. O sistema realiza diferentes operações sobre os dados, simulando funcionalidades de um pequeno sistema de consulta.
+Este projeto tem como objetivo a leitura, organizaÃ§Ã£o e anÃ¡lise de dados relacionados a processos da JustiÃ§a Eleitoral do Distrito Federal, presentes em um arquivo `.csv`. O sistema realiza diferentes operaÃ§Ãµes sobre os dados, simulando funcionalidades de um pequeno sistema de consulta.
 
 ---
 
 ## Funcionalidades Implementadas
 
 - Leitura e carregamento de dados de um arquivo CSV contendo milhares de processos  
-- Ordenação dos dados:
+- OrdenaÃ§Ã£o dos dados:
   - Por ID, em ordem crescente
   - Por Data de Ajuizamento, da mais recente para a mais antiga  
 - Contagem de processos associados a uma determinada classe processual (`id_classe`)
@@ -23,42 +23,42 @@ Este projeto tem como objetivo a leitura, organização e análise de dados relacio
 ## Estrutura dos Dados
 
 Cada processo possui os seguintes campos:
-- `id`: Identificador único do processo
-- `numero`: Número oficial do processo
-- `data_ajuizamento`: Data e hora de início do processo
-- `id_classe`: Classe processual (pode conter múltiplos valores)
+- `id`: Identificador Ãºnico do processo
+- `numero`: NÃºmero oficial do processo
+- `data_ajuizamento`: Data e hora de inÃ­cio do processo
+- `id_classe`: Classe processual (pode conter mÃºltiplos valores)
 - `id_assunto`: Assunto vinculado ao processo
-- `ano_eleicao`: Ano da eleição relacionada ao processo
+- `ano_eleicao`: Ano da eleiÃ§Ã£o relacionada ao processo
 
 ---
 
-## Tecnologias e Técnicas Utilizadas
+## Tecnologias e TÃ©cnicas Utilizadas
 
 - Linguagem C
-- Alocação dinâmica de memória
+- AlocaÃ§Ã£o dinÃ¢mica de memÃ³ria
 - Vetores de structs
-- Manipulação de arquivos `.csv`
-- Implementação manual de algoritmos de ordenação (sem uso de bibliotecas externas)
-- Separação em múltiplos arquivos:
+- ManipulaÃ§Ã£o de arquivos `.csv`
+- ImplementaÃ§Ã£o manual de algoritmos de ordenaÃ§Ã£o (sem uso de bibliotecas externas)
+- SeparaÃ§Ã£o em mÃºltiplos arquivos:
   - `main.c`
   - `func.c`
   - `func.h`
-- Utilização de Tipo Abstrato de Dados (TAD)
+- UtilizaÃ§Ã£o de Tipo Abstrato de Dados (TAD)
 
 ---
 
 ## Funcionalidades Futuras (Em Desenvolvimento)
 
 - Contagem dos diferentes `id_assunto` existentes  
-- Listagem de processos com múltiplos assuntos  
-- Cálculo de dias em tramitação para cada processo  
-- Escrita de arquivos `.csv` com os resultados das ordenações
+- Listagem de processos com mÃºltiplos assuntos  
+- CÃ¡lculo de dias em tramitaÃ§Ã£o para cada processo  
+- Escrita de arquivos `.csv` com os resultados das ordenaÃ§Ãµes
 
 ---
 
 ## Como Executar
 
-1. Clone este repositório:
+1. Clone este repositÃ³rio:
 ```bash
 git clone https://github.com/seu-usuario/seu-repositorio.git
 ```
@@ -78,11 +78,11 @@ gcc main.c func.c -o analise_processos
 ## Autoria
 
 Projeto desenvolvido por Eduardo C., como parte do curso de Engenharia de Software - 2024.  
-Em caso de dúvidas ou sugestões, entre em contato por [eduardouc388@gmail.com](mailto:eduardouc388@gmail.com)  
+Em caso de dÃºvidas ou sugestÃµes, entre em contato por [eduardouc388@gmail.com](mailto:eduardouc388@gmail.com)  
 GitHub: [https://github.com/eduuardo1st](https://github.com/eduuardo1st)
 
 ---
 
-## Licença
+## LicenÃ§a
 
-Este projeto está licenciado sob a MIT License.
+Este projeto estÃ¡ licenciado sob a MIT License.
