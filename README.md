@@ -1,6 +1,6 @@
 # Análise de Dados da Justiça Eleitoral (DF)
 
-Projeto desenvolvido como parte da disciplina de Programação Estruturada (2024), com foco na manipulação de dados estruturados em linguagem C, utilizando vetores de structs e TADs.
+Projeto desenvolvido como parte da disciplina de Programação Estruturada (2025/1), com foco na manipulação de dados estruturados em linguagem C, utilizando vetores de structs e TADs.
 
 ---
 
