@@ -77,7 +77,7 @@ gcc main.c func.c -o analise_processos
 
 ## Autoria
 
-Projeto desenvolvido por Eduardo C., como parte do curso de Engenharia de Software - 2024.  
+Projeto desenvolvido por Eduardo Gonçalves e Arthur Vieira, como parte do curso de Engenharia de Software - 2024.  
 Em caso de dúvidas ou sugestões, entre em contato por [eduardouc388@gmail.com](mailto:eduardouc388@gmail.com)  
 GitHub: [https://github.com/eduuardo1st](https://github.com/eduuardo1st)
 
