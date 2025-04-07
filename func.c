@@ -4,7 +4,9 @@
 #include <string.h>
 
 processo_t *LerArquivo(const char *nomeArquivo){
-    int i = 0;
+    int N = 0;
+    char linha[2048];
+
     FILE *arquivo = fopen(nomeArquivo, "r");
     if (arquivo == NULL) {
         printf("ERRO! Falha ao abrir o arquivo.\n");
@@ -21,17 +23,49 @@ processo_t *LerArquivo(const char *nomeArquivo){
     // Pular primeira linha
     fscanf(arquivo, "%*[^\n]\n");
 
-    while(fscanf(arquivo, "%[^;];%[^;];%[^;];%[^;];%[^;];%[^\n]\n",
-        processos[i].id, 
-        processos[i].numero, 
-        processos[i].data_ajuizamento,
-        processos[i].id_classe, 
-        processos[i].id_assunto, 
-        processos[i].ano_aleicao) == 6)i++;
+    while(fscanf(arquivo, " %[^\n]\n", linha) == 1){
+        int I_id;
+        for(I_id = 0; linha[I_id] != ','; I_id++) processos[N].id[I_id] = linha[I_id];
+        I_id++;
 
+        int I_numero;
+        for(I_numero = I_id + 1; linha[I_numero] != '\"'; I_numero++) processos[N].numero[I_numero - I_id - 1] = linha[I_numero];
+        I_numero++;
 
-    
+        int I_data;
+        for(I_data = I_numero + 1; linha[I_data] != '\"'; I_data++) processos[N].data_ajuizamento[I_data - I_numero - 1] = linha[I_data];
+        processos[N].data_ajuizamento[I_data - I_numero - 1] = '\0';
+        I_data++;
+
+        if(linha[I_data] == '\"') I_data++;
+
+        int I_classe;
+        for (I_classe = I_data + 1; linha[I_classe] != '}'; I_classe++) processos[N].id_assunto[I_classe - I_data - 1] = linha[I_classe];
+        processos[N].id_assunto[I_classe - I_data - 1] = '\0';
+        I_classe++;
+
+        if(linha[I_classe] == '\"') I_classe += 2;
+        else I_classe++;
+
+        if(linha[I_classe] == '\"') I_classe++;
+
+        int I_assunto;
+        for(I_assunto = I_classe + 1; linha[I_assunto] != '}'; I_assunto++) processos[N].id_classe[I_assunto - I_classe - 1] = linha[I_assunto];
+        processos[N].id_classe[I_assunto - I_classe - 1] = '\0';
+        I_assunto++;
+
+        if(linha[I_assunto] == '\"') I_assunto += 2;
+        else I_assunto++;
+
+        int I_ano;
+        for(I_ano = I_assunto + 1; linha[I_ano] != '\n'; I_ano++) processos[N].ano_aleicao[I_ano - I_assunto - 1] = linha[I_ano];
+        processos[N].ano_aleicao[I_ano - I_assunto - 1] = '\0';
+
+        N++;
+    }
+   
     fclose(arquivo);
+    free(processos);
     return processos;
 }
 

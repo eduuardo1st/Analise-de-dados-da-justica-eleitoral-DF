@@ -4,10 +4,15 @@
 #include <string.h>
 
 int main() {
-    processo_t *processos = LerArquivo("./processo_043_202409032338_modificado.csv");
+    processo_t *processos = LerArquivo("./processo_043_202409032338.csv");
     if (processos == NULL) {
         printf("Erro ao carregar os processos.\n");
         return 1;
+    }
+
+    int i;
+    for(i=0; i<14; i++) {
+        printf("%d %s %s %s %s %s %s\n", i, processos[i].id, processos[i].numero, processos[i].data_ajuizamento, processos[i].id_classe, processos[i].id_assunto, processos[i].ano_aleicao);
     }
 
     QuickSortID(processos, 0, NumProcesso - 1);
