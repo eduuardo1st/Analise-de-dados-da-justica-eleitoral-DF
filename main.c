@@ -12,14 +12,14 @@ int main() {
 
     int i;
     for(i=0; i<14; i++) {
-        printf("%d %s %s %s %s %s %s\n", i, processos[i].id, processos[i].numero, processos[i].data_ajuizamento, processos[i].id_classe, processos[i].id_assunto, processos[i].ano_aleicao);
+        printf("%d %s %s %s %s %s %d\n", i, processos[i].id, processos[i].numero, processos[i].data_ajuizamento, processos[i].id_classe, processos[i].id_assunto, processos[i].ano_eleicao);
     }
 
     QuickSortID(processos, 0, NumProcesso - 1);
 
     QuickSortDataMaisAtual(processos, 0, NumProcesso - 1);
 
-    QntdProcessosID_classe(processos, "12554");
+    QntdProcessosID_classe(processos, "11778");
 
     free(processos);
     return 0;

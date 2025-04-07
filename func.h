@@ -9,7 +9,7 @@ typedef struct processo_t {
     char data_ajuizamento[40];
     char id_classe[20];
     char id_assunto[20];
-    char ano_aleicao[5];
+    int ano_eleicao;
 }processo_t;
 
 processo_t *LerArquivo(const char *nomeArquivo);
