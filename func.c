@@ -23,24 +23,34 @@ processo_t *LerArquivo(const char *nomeArquivo){
     // Pular primeira linha
     fscanf(arquivo, "%*[^\n]\n");
 
-    while(fscanf(arquivo, " %[^\n]\n", linha) == 1){
+    while(fscanf(arquivo, " %[^\n]\n", linha) == 1 && N < NumProcesso){
+        // Parse ID
         int I_id;
-        for(I_id = 0; linha[I_id] != ','; I_id++) processos[N].id[I_id] = linha[I_id];
+        for(I_id = 0; linha[I_id] != ',' && I_id < sizeof(processos[N].id)-1; I_id++) 
+            processos[N].id[I_id] = linha[I_id];
+        processos[N].id[I_id] = '\0';
         I_id++;
 
+        // Parse Numero
         int I_numero;
-        for(I_numero = I_id + 1; linha[I_numero] != '\"'; I_numero++) processos[N].numero[I_numero - I_id - 1] = linha[I_numero];
+        for(I_numero = I_id + 1; linha[I_numero] != '\"' && (I_numero - I_id - 1) < sizeof(processos[N].numero)-1; I_numero++) 
+            processos[N].numero[I_numero - I_id - 1] = linha[I_numero];
+        processos[N].numero[I_numero - I_id - 1] = '\0';
         I_numero++;
 
+        // Parse Data
         int I_data;
-        for(I_data = I_numero + 1; linha[I_data] != '\"'; I_data++) processos[N].data_ajuizamento[I_data - I_numero - 1] = linha[I_data];
+        for(I_data = I_numero + 1; linha[I_data] != '\"' && (I_data - I_numero - 1) < sizeof(processos[N].data_ajuizamento)-1; I_data++) 
+            processos[N].data_ajuizamento[I_data - I_numero - 1] = linha[I_data];
         processos[N].data_ajuizamento[I_data - I_numero - 1] = '\0';
         I_data++;
 
         if(linha[I_data] == '\"') I_data++;
 
+        // Parse Assunto
         int I_classe;
-        for (I_classe = I_data + 1; linha[I_classe] != '}'; I_classe++) processos[N].id_assunto[I_classe - I_data - 1] = linha[I_classe];
+        for (I_classe = I_data + 1; linha[I_classe] != '}' && (I_classe - I_data - 1) < sizeof(processos[N].id_assunto)-1; I_classe++) 
+            processos[N].id_assunto[I_classe - I_data - 1] = linha[I_classe];
         processos[N].id_assunto[I_classe - I_data - 1] = '\0';
         I_classe++;
 
@@ -49,23 +59,26 @@ processo_t *LerArquivo(const char *nomeArquivo){
 
         if(linha[I_classe] == '\"') I_classe++;
 
+        // Parse Classe
         int I_assunto;
-        for(I_assunto = I_classe + 1; linha[I_assunto] != '}'; I_assunto++) processos[N].id_classe[I_assunto - I_classe - 1] = linha[I_assunto];
+        for(I_assunto = I_classe + 1; linha[I_assunto] != '}' && (I_assunto - I_classe - 1) < sizeof(processos[N].id_classe)-1; I_assunto++) 
+            processos[N].id_classe[I_assunto - I_classe - 1] = linha[I_assunto];
         processos[N].id_classe[I_assunto - I_classe - 1] = '\0';
         I_assunto++;
 
         if(linha[I_assunto] == '\"') I_assunto += 2;
         else I_assunto++;
 
+        // Parse Ano
         int I_ano;
-        for(I_ano = I_assunto + 1; linha[I_ano] != '\n'; I_ano++) processos[N].ano_aleicao[I_ano - I_assunto - 1] = linha[I_ano];
+        for(I_ano = I_assunto + 1; linha[I_ano] != '\n' && (I_ano - I_assunto - 1) < sizeof(processos[N].ano_aleicao)-1; I_ano++) 
+            processos[N].ano_aleicao[I_ano - I_assunto - 1] = linha[I_ano];
         processos[N].ano_aleicao[I_ano - I_assunto - 1] = '\0';
 
         N++;
     }
    
     fclose(arquivo);
-    free(processos);
     return processos;
 }
 
