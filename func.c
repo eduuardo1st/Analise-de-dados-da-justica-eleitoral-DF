@@ -3,7 +3,7 @@
 #include <string.h>
 #include "func.h"
 
-processo_t *LerArquivo(const char *nomeArquivo){
+Processo *LerArquivo(const char *nomeArquivo){
     int N = 0;
     char linha[2048];
 
@@ -13,7 +13,7 @@ processo_t *LerArquivo(const char *nomeArquivo){
         return NULL;
     }
 
-    processo_t *processos = (processo_t *)malloc(NumProcesso * sizeof(processo_t));
+    Processo *processos = (Processo *)malloc(NumProcesso * sizeof(Processo));
     if (processos == NULL) {
         printf("Nao foi possivel alocar memoria para a tabela!\n");
         fclose(arquivo);
@@ -75,7 +75,7 @@ processo_t *LerArquivo(const char *nomeArquivo){
     return processos;
 }
 
-void QuickSortID(processo_t *V, int inf, int sup){
+void QuickSortID(Processo *V, int inf, int sup){
 	if(inf < sup){
 		int P = Particao(V, inf, sup);
 		QuickSortID(V, inf, P - 1);
@@ -84,8 +84,8 @@ void QuickSortID(processo_t *V, int inf, int sup){
 	
 }
 
-int Particao(processo_t *V, int inf, int sup){
-	processo_t Pivo = V[(inf + sup) / 2];
+int Particao(Processo *V, int inf, int sup){
+	Processo Pivo = V[(inf + sup) / 2];
 	int i = inf;
 	int j = sup;
 	
@@ -101,13 +101,13 @@ int Particao(processo_t *V, int inf, int sup){
 	return i;
 }
 
-void Swap(processo_t *a, processo_t *b){
-	processo_t temp = *a;
+void Swap(Processo *a, Processo *b){
+	Processo temp = *a;
 	*a = *b;
 	*b = temp;
 }
 
-void QuickSortDataMaisAtual(processo_t *V, int inf, int sup){
+void QuickSortDataMaisAtual(Processo *V, int inf, int sup){
 	if(inf < sup){
 		int P = ParticaoData(V, inf, sup);
 		QuickSortDataMaisAtual(V, inf, P - 1);
@@ -116,8 +116,8 @@ void QuickSortDataMaisAtual(processo_t *V, int inf, int sup){
 	
 }
 
-int ParticaoData(processo_t *V, int inf, int sup){
-	processo_t Pivo = V[(inf + sup) / 2];
+int ParticaoData(Processo *V, int inf, int sup){
+	Processo Pivo = V[(inf + sup) / 2];
 	int i = inf;
 	int j = sup;
 	
@@ -133,7 +133,7 @@ int ParticaoData(processo_t *V, int inf, int sup){
 	return i;
 }
 
-void QntdProcessosID_classe(processo_t *V, unsigned char *string){
+void QntdProcessosID_classe(Processo *V, unsigned char *string){
     int i;
     int processosLigadosAClasse = 0;
     for(i=0;i<NumProcesso;i++){
@@ -144,3 +144,24 @@ void QntdProcessosID_classe(processo_t *V, unsigned char *string){
     printf("Ha %d processos ligados a classe '%s'.\n", processosLigadosAClasse, string);
 }
 
+void EscreverArquivo(Processo *p, const char *nomeArquivo){
+    FILE *arquivo = fopen(nomeArquivo, "w");
+    if (arquivo == NULL) {
+        printf("ERRO! Falha ao abrir o arquivo.\n");
+        return;
+    }
+
+    fprintf(arquivo, "id;numero;data_ajuizamento;id_classe;id_assunto;ano_eleicao\n");
+
+    for(int i = 0; i < NumProcesso; i++){
+        fprintf(arquivo, "%s,\"%s\",%s,\"{%s}\",\"{%s}\",%d\n", 
+                p[i].id, 
+                p[i].numero, 
+                p[i].data_ajuizamento, 
+                p[i].id_classe, 
+                p[i].id_assunto, 
+                p[i].ano_eleicao);
+    }
+
+    fclose(arquivo);
+}
