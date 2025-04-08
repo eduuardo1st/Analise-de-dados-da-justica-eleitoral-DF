@@ -19,7 +19,7 @@ int main() {
 
     QuickSortDataMaisAtual(processos, 0, NumProcesso - 1);
 
-    QntdProcessosID_classe(processos, "11778");
+    QntdProcessosID_classe(processos, "261");
 
     free(processos);
     return 0;

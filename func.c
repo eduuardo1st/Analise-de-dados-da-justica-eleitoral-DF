@@ -44,9 +44,9 @@ processo_t *LerArquivo(const char *nomeArquivo){
         if(linha[I_data] == '\"') I_data++;
 
         int I_classe;
-        for (I_classe = I_data + 1; linha[I_classe] != '}' && (I_classe - I_data - 1) < sizeof(processos[N].id_assunto)-1; I_classe++) 
-            processos[N].id_assunto[I_classe - I_data - 1] = linha[I_classe];
-        processos[N].id_assunto[I_classe - I_data - 1] = '\0';
+        for (I_classe = I_data + 1; linha[I_classe] != '}' && (I_classe - I_data - 1) < sizeof(processos[N].id_classe)-1; I_classe++) 
+            processos[N].id_classe[I_classe - I_data - 1] = linha[I_classe];
+        processos[N].id_classe[I_classe - I_data - 1] = '\0';
         I_classe++;
 
         if(linha[I_classe] == '\"') I_classe += 2;
@@ -55,9 +55,9 @@ processo_t *LerArquivo(const char *nomeArquivo){
         if(linha[I_classe] == '\"') I_classe++;
 
         int I_assunto;
-        for(I_assunto = I_classe + 1; linha[I_assunto] != '}' && (I_assunto - I_classe - 1) < sizeof(processos[N].id_classe)-1; I_assunto++) 
-            processos[N].id_classe[I_assunto - I_classe - 1] = linha[I_assunto];
-        processos[N].id_classe[I_assunto - I_classe - 1] = '\0';
+        for(I_assunto = I_classe + 1; linha[I_assunto] != '}' && (I_assunto - I_classe - 1) < sizeof(processos[N].id_assunto)-1; I_assunto++) 
+            processos[N].id_assunto[I_assunto - I_classe - 1] = linha[I_assunto];
+        processos[N].id_assunto[I_assunto - I_classe - 1] = '\0';
         I_assunto++;
 
         if(linha[I_assunto] == '\"') I_assunto += 2;
@@ -136,7 +136,7 @@ int ParticaoData(processo_t *V, int inf, int sup){
 void QntdProcessosID_classe(processo_t *V, unsigned char *string){
     int i;
     int processosLigadosAClasse = 0;
-    for(i=0;i<NumProcesso-1;i++){
+    for(i=0;i<NumProcesso;i++){
         if (strstr(V[i].id_classe, string) != NULL) {
             processosLigadosAClasse++;
         }
