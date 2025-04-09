@@ -22,6 +22,8 @@ void Swap(Processo *a, Processo *b);
 void QntdProcessosID_classe(Processo *V, unsigned char *string);
 void EscreverArquivo(Processo *V, const char *nomeArquivo);
 void QuantosDias(Processo *V, unsigned char *string);
+void QntdProcessosID_assunto(Processo *V);
+void QntdAssuntosMultiplos(Processo *V);
 
 
 

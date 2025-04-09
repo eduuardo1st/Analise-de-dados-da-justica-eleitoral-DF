@@ -168,8 +168,62 @@ void EscreverArquivo(Processo *V, const char *nomeArquivo){
     fclose(arquivo);
 }
 
-void QuantosDias(Processo *V, unsigned char *string)
-{
+void QntdProcessosID_assunto(Processo *V){
+
+    int Qtd_total = 0;
+    for (int i = 0; i < NumProcesso; i++){
+        Qtd_total++;
+        for (int j = 0; V[i].id_assunto[j] != '\0'; j++){
+            if (V[i].id_assunto[j] == ','){
+                Qtd_total++;
+            }
+        }
+    }
+
+    int assuntos_diff[100]; 
+    int Qtd_diff = 0;
+    int i = 0;
+    
+    do {
+        int temp[5] = {0};  
+        int Qtd_adicionado = sscanf(V[i].id_assunto, "%d,%d,%d,%d,%d",
+                                     &temp[0], &temp[1], &temp[2],
+                                     &temp[3], &temp[4]);
+    
+        for (int j = 0; j < Qtd_adicionado; j++) {
+            int valor = temp[j];
+            int ja_existe = 0;
+    
+            for (int k = 0; k < Qtd_diff; k++) {
+                if (assuntos_diff[k] == valor) {
+                    ja_existe = 1;
+                    break;
+                }
+            }
+    
+            if (!ja_existe) {
+                assuntos_diff[Qtd_diff++] = valor;
+            }
+        }
+    
+        i++;
+    } while (i < NumProcesso);
+
+    printf("Constam %d assuntos totais na base de dados e %d assuntos unicos.\n", Qtd_total, Qtd_diff);
+}
+
+void QntdAssuntosMultiplos(Processo *V){
+    int Qtd_total = 0;
+    for (int i = 0; i < NumProcesso; i++){
+        if(strstr(V[i].id_assunto, ",") != NULL){
+            printf("%s,%s,%s,{%s},\"{%s}\",%d\n", V[i].id, V[i].numero, V[i].data_ajuizamento, V[i].id_classe, V[i].id_assunto, V[i].ano_eleicao);
+            Qtd_total++;
+        }
+    }
+    printf(" ^ foram encontrados %d processos que estao vinculados a mais de um assunto.^\n", Qtd_total);
+}
+
+void QuantosDias(Processo *V, unsigned char *string){
 
     time_t calendario_atual;
     if (time(&calendario_atual) == -1)
@@ -222,5 +276,6 @@ void QuantosDias(Processo *V, unsigned char *string)
     if (calendario_atual_struct->tm_hour > data_CSV.tm_hour)
         dias--;
 
-    printf("\nO processo de id '%s' esta em tramitacao na justica ha %.f dias!", string, dias);
+    printf("\nLinha - %d", i + 2);
+    printf("\nO processo de id '%s' esta em tramitacao na justica ha %.f dias!\n", string, dias);
 }
