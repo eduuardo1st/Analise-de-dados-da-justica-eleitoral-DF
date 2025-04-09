@@ -20,7 +20,8 @@ void QuickSortDataMaisAtual(Processo *V, int inf, int sup);
 int ParticaoData(Processo *V, int inf, int sup);
 void Swap(Processo *a, Processo *b);
 void QntdProcessosID_classe(Processo *V, unsigned char *string);
-void EscreverArquivo(Processo *p, const char *nomeArquivo);
+void EscreverArquivo(Processo *V, const char *nomeArquivo);
+void QuantosDias(Processo *V, unsigned char *string);
 
 
 

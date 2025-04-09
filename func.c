@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+#include <time.h>
 #include "func.h"
 
 Processo *LerArquivo(const char *nomeArquivo){
@@ -144,7 +146,7 @@ void QntdProcessosID_classe(Processo *V, unsigned char *string){
     printf("Ha %d processos ligados a classe '%s'.\n", processosLigadosAClasse, string);
 }
 
-void EscreverArquivo(Processo *p, const char *nomeArquivo){
+void EscreverArquivo(Processo *V, const char *nomeArquivo){
     FILE *arquivo = fopen(nomeArquivo, "w");
     if (arquivo == NULL) {
         printf("ERRO! Falha ao abrir o arquivo.\n");
@@ -155,13 +157,70 @@ void EscreverArquivo(Processo *p, const char *nomeArquivo){
 
     for(int i = 0; i < NumProcesso; i++){
         fprintf(arquivo, "%s,\"%s\",%s,\"{%s}\",\"{%s}\",%d\n", 
-                p[i].id, 
-                p[i].numero, 
-                p[i].data_ajuizamento, 
-                p[i].id_classe, 
-                p[i].id_assunto, 
-                p[i].ano_eleicao);
+                V[i].id, 
+                V[i].numero, 
+                V[i].data_ajuizamento, 
+                V[i].id_classe, 
+                V[i].id_assunto, 
+                V[i].ano_eleicao);
     }
 
     fclose(arquivo);
+}
+
+void QuantosDias(Processo *V, unsigned char *string)
+{
+
+    time_t calendario_atual;
+    if (time(&calendario_atual) == -1)
+    {
+        printf("Calendario indisponível.\n");
+        exit(1);
+    }
+
+    struct tm *calendario_atual_struct = localtime(&calendario_atual);
+
+    struct tm data_CSV;
+
+    int i = 0;
+    for (i; i < NumProcesso; i++)
+    {
+        if (strstr(V[i].id, string) != NULL)
+            break;
+    }
+
+    if (i == NumProcesso)
+    {
+        printf("Processo com ID '%s' não encontrado.\n", string);
+        return;
+    }
+
+    if (sscanf(V[i].data_ajuizamento, "%d-%d-%d %d:%d:%d",
+               &data_CSV.tm_year, &data_CSV.tm_mon, &data_CSV.tm_mday,
+               &data_CSV.tm_hour, &data_CSV.tm_min, &data_CSV.tm_sec) == 6)
+    {
+        data_CSV.tm_year -= 1900;
+        data_CSV.tm_mon -= 1;
+        data_CSV.tm_isdst = -1;
+    }
+    else
+    {
+        printf("Erro ao ler a data do processo.\n");
+        return;
+    }
+
+    time_t tempo_CSV = mktime(&data_CSV);
+
+    if (tempo_CSV == -1)
+    {
+        printf("\nErro ao converter a data CSV para time_t\n");
+        exit(1);
+    }
+
+    time_t segundos_diferenca = difftime(calendario_atual, tempo_CSV);
+    float dias = (float)segundos_diferenca / 86400;
+    if (calendario_atual_struct->tm_hour > data_CSV.tm_hour)
+        dias--;
+
+    printf("\nO processo de id '%s' esta em tramitacao na justica ha %.f dias!", string, dias);
 }

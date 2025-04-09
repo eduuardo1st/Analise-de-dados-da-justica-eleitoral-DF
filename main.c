@@ -10,10 +10,12 @@ int main() {
         return 1;
     }
 
-    int i;
+/*     int i;
     for(i=10667; i<10673; i++) {
-        printf("%d %s %s %s %s %s %d\n", i, processos[i].id, processos[i].numero, processos[i].data_ajuizamento, processos[i].id_classe, processos[i].id_assunto, processos[i].ano_eleicao);
-    }
+        printf("Linha: %d - %s\n", i+2, processos[i].data_ajuizamento);
+    } */
+
+    printf("\n");
 
     QuickSortID(processos, 0, NumProcesso - 1);
     EscreverArquivo( processos, "./processo_ordenado_id.csv");
@@ -22,6 +24,8 @@ int main() {
     EscreverArquivo( processos, "./processo_ordenado_data.csv");
 
     QntdProcessosID_classe(processos, "261");
+
+    QuantosDias(processos,"405277413");
 
     free(processos);
     return 0;
