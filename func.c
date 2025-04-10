@@ -220,7 +220,7 @@ void QntdAssuntosMultiplos(Processo *V){
             Qtd_total++;
         }
     }
-    printf(" ^ foram encontrados %d processos que estao vinculados a mais de um assunto.^\n", Qtd_total);
+    printf("\n^ foram encontrados %d processos que estao vinculados a mais de um assunto.^\n", Qtd_total);
 }
 
 void QuantosDias(Processo *V, unsigned char *string){
@@ -276,6 +276,5 @@ void QuantosDias(Processo *V, unsigned char *string){
     if (calendario_atual_struct->tm_hour > data_CSV.tm_hour)
         dias--;
 
-    printf("\nLinha - %d", i + 2);
     printf("\nO processo de id '%s' esta em tramitacao na justica ha %.f dias!\n", string, dias);
 }
