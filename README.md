@@ -84,7 +84,7 @@ Desenvolvido por:
 - Eduardo Gonçalves – [eduardouc388@gmail.com](mailto:eduardouc388@gmail.com) – [@eduuardo1st](https://github.com/eduuardo1st)  
 - Arthur Vieira – [arthurVsousa@outlook.com](mailto:arthurVsousa@outlook.com) – [@He1ce](https://github.com/He1ce)  
 
-Curso de Engenharia de Software - 2024, Universidade XYZ.
+Curso de Engenharia de Software - 2025, Universidade Católica de Brasília.
 
 ---
 
