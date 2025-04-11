@@ -228,7 +228,7 @@ void QuantosDias(Processo *V, unsigned char *string){
     time_t calendario_atual;
     if (time(&calendario_atual) == -1)
     {
-        printf("Calendario indisponível.\n");
+        printf("Calendario indisponi�vel.\n");
         exit(1);
     }
 
@@ -245,7 +245,7 @@ void QuantosDias(Processo *V, unsigned char *string){
 
     if (i == NumProcesso)
     {
-        printf("Processo com ID '%s' não encontrado.\n", string);
+        printf("Processo com ID '%s' nao encontrado.\n", string);
         return;
     }
 
@@ -272,9 +272,7 @@ void QuantosDias(Processo *V, unsigned char *string){
     }
 
     time_t segundos_diferenca = difftime(calendario_atual, tempo_CSV);
-    float dias = (float)segundos_diferenca / 86400;
-    if (calendario_atual_struct->tm_hour > data_CSV.tm_hour)
-        dias--;
+    int dias = segundos_diferenca / 86400;
 
-    printf("\nO processo de id '%s' esta em tramitacao na justica ha %.f dias!\n", string, dias);
+    printf("\nO processo de id '%s' esta em tramitacao na justica ha %d dias!\n", string, dias);
 }

@@ -1,88 +1,102 @@
-# Análise de Dados da Justiça Eleitoral (DF)
 
-Projeto desenvolvido como parte da disciplina de Programação Estruturada (2025/1), com foco na manipulação de dados estruturados em linguagem C, utilizando vetores de structs e TADs.
+# 📊 Análise de Dados da Justiça Eleitoral (DF)
 
----
-
-## Objetivo
-
-Este projeto tem como objetivo a leitura, organização e análise de dados relacionados a processos da Justiça Eleitoral do Distrito Federal, presentes em um arquivo `.csv`. O sistema realiza diferentes operações sobre os dados, simulando funcionalidades de um pequeno sistema de consulta.
+Projeto desenvolvido como parte da disciplina de **Programação Estruturada (2025/1)**, com foco na manipulação de dados estruturados em linguagem C, utilizando vetores de structs, alocação dinâmica e TADs.
 
 ---
 
-## Funcionalidades Implementadas
+## 🎯 Objetivo
 
-- Leitura e carregamento de dados de um arquivo CSV contendo milhares de processos  
-- Ordenação dos dados:
-  - Por ID, em ordem crescente
-  - Por Data de Ajuizamento, da mais recente para a mais antiga  
-- Contagem de processos associados a uma determinada classe processual (`id_classe`)
+Este projeto tem como objetivo a leitura, organização e análise de dados relacionados a processos da Justiça Eleitoral do Distrito Federal, presentes em um arquivo `.csv`. O sistema simula funcionalidades de um pequeno sistema de consulta judicial.
 
 ---
 
-## Estrutura dos Dados
+## ✅ Funcionalidades Implementadas
 
-Cada processo possui os seguintes campos:
-- `id`: Identificador único do processo
-- `numero`: Número oficial do processo
-- `data_ajuizamento`: Data e hora de início do processo
-- `id_classe`: Classe processual (pode conter múltiplos valores)
-- `id_assunto`: Assunto vinculado ao processo
-- `ano_eleicao`: Ano da eleição relacionada ao processo
+- Leitura e carregamento de dados de um arquivo `.csv` com milhares de processos.
+- Ordenação dos processos:
+  - Por **ID** (crescente).
+  - Por **Data de Ajuizamento** (da mais recente para a mais antiga).
+- Contagem de processos associados a uma determinada **classe processual** (`id_classe`).
+- Cálculo de **dias em tramitação** com base na data de ajuizamento.
+- Contagem do número total e único de **assuntos processuais** (`id_assunto`).
+- Listagem de processos que possuem **múltiplos assuntos**.
 
 ---
 
-## Tecnologias e Técnicas Utilizadas
+## 🗃️ Estrutura dos Dados
+
+Cada processo contém os seguintes campos:
+
+- `id`: Identificador único do processo.
+- `numero`: Número oficial do processo.
+- `data_ajuizamento`: Data e hora de início do processo.
+- `id_classe`: Classe processual (pode conter múltiplos valores).
+- `id_assunto`: Assunto(s) vinculado(s) ao processo.
+- `ano_eleicao`: Ano da eleição associada ao processo.
+
+---
+
+## 🧪 Tecnologias e Técnicas Utilizadas
 
 - Linguagem C
+- Vetores de structs e TAD
 - Alocação dinâmica de memória
-- Vetores de structs
 - Manipulação de arquivos `.csv`
-- Implementação manual de algoritmos de ordenação (sem uso de bibliotecas externas)
-- Separação em múltiplos arquivos:
-  - `main.c`
-  - `func.c`
-  - `func.h`
-- Utilização de Tipo Abstrato de Dados (TAD)
+- Implementação manual de algoritmos de ordenação (`QuickSort`)
+- Separação modular em múltiplos arquivos:
+  - `main.c` (execução principal)
+  - `func.c` (implementações)
+  - `func.h` (interface e definições)
+- Manipulação de datas e uso da biblioteca `time.h`
 
 ---
 
-## Funcionalidades Futuras (Em Desenvolvimento)
+## 🔮 Funcionalidades Futuras
 
-- Contagem dos diferentes `id_assunto` existentes  
-- Listagem de processos com múltiplos assuntos  
-- Cálculo de dias em tramitação para cada processo  
-- Escrita de arquivos `.csv` com os resultados das ordenações
+- Interface gráfica ou web para visualização dos dados
+- Filtros avançados por múltiplos critérios (assunto + ano + classe)
+- Exportação de análises em gráficos
+- Otimizações de performance em grandes volumes de dados
 
 ---
 
-## Como Executar
+## 🧰 Como Executar
 
 1. Clone este repositório:
+
 ```bash
 git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
 ```
 
-2. Compile os arquivos:
+2. Compile o código:
+
 ```bash
 gcc main.c func.c -o analise_processos
 ```
 
-3. Execute o programa:
+3. Certifique-se de ter um arquivo `.csv` chamado `processo_043_202409032338.csv` na pasta do projeto.
+
+4. Execute o programa:
+
 ```bash
 ./analise_processos
 ```
 
 ---
 
-## Autoria
+## 👨‍💻 Autoria
 
-Projeto desenvolvido por Eduardo Gonçalves e Arthur Vieira, como parte do curso de Engenharia de Software - 2024.  
-Em caso de dúvidas ou sugestões, entre em contato por [eduardouc388@gmail.com](mailto:eduardouc388@gmail.com)  
-GitHub: [https://github.com/eduuardo1st](https://github.com/eduuardo1st)
+Desenvolvido por:
+
+- Eduardo Gonçalves – [eduardouc388@gmail.com](mailto:eduardouc388@gmail.com) – [@eduuardo1st](https://github.com/eduuardo1st)  
+- Arthur Vieira – [arthurVsousa@outlook.com](mailto:arthurVsousa@outlook.com) – [@He1ce](https://github.com/He1ce)  
+
+Curso de Engenharia de Software - 2024, Universidade XYZ.
 
 ---
 
-## Licença
+## 📄 Licença
 
-Este projeto está licenciado sob a MIT License.
+Este projeto está licenciado sob a **MIT License**. Consulte o arquivo `LICENSE` para mais informações.
