@@ -52,15 +52,6 @@ Cada processo contém os seguintes campos:
 
 ---
 
-## 🔮 Funcionalidades Futuras
-
-- Interface gráfica ou web para visualização dos dados
-- Filtros avançados por múltiplos critérios (assunto + ano + classe)
-- Exportação de análises em gráficos
-- Otimizações de performance em grandes volumes de dados
-
----
-
 ## 🧰 Como Executar
 
 1. Clone este repositório:
